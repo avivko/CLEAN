@@ -74,10 +74,19 @@ def progress(current, total):
     """  
     Generate progress bar data.       
     """
+    ## for windows support (does not have fcntl)
+    def ioctl(fd, op, arg=0, mutable_flag=True):
+        if mutable_flag:
+            return 0
+        else:
+            return ""
     try:
         import termios
-        COLS = struct.unpack('hh',  fcntl.ioctl(sys.stdout,
+        """COLS = struct.unpack('hh',  fcntl.ioctl(sys.stdout,
+                                                termios.TIOCGWINSZ, '1234'))[1]"""
+        COLS = struct.unpack('hh',  ioctl(sys.stdout,
                                                 termios.TIOCGWINSZ, '1234'))[1]
+        
     except:
         COLS = 50
     prefix = '        %d / %d' % (current, total)
