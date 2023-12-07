@@ -102,7 +102,7 @@ class Preprocessing(object):
         pipeline_log.setLevel(logging.DEBUG)
         self.log_path = pjoin(self.results_savepath, 'logs')
         if not os.path.exists(self.log_path): os.makedirs(self.log_path)
-        self.local_logfile = pjoin(self.log_path, time.strftime("%Y-%b-%d-%H:%M:%S_log.txt", time.localtime()))
+        self.local_logfile = pjoin(self.log_path, time.strftime("%Y-%b-%d--%H-%M-%S_log.txt", time.localtime()))
         fh = logging.FileHandler(self.local_logfile)
         fh.setLevel(logging.DEBUG)
         format = '%(asctime)s - %(levelname)s - %(message)s'
@@ -119,7 +119,7 @@ class Preprocessing(object):
        
         # Make a copy of the parameters file used for this run
         param_path = pjoin(self.results_savepath, 'parameters')
-        paramcopy_file = pjoin(param_path, time.strftime("%Y-%b-%d-%H:%M:%S-params.cfg", time.localtime()))
+        paramcopy_file = pjoin(param_path, time.strftime("%Y-%b-%d--%H-%M-%S-params.cfg", time.localtime()))
         if not os.path.exists(param_path): os.makedirs(param_path)
         shutil.copyfile(parameters_file, paramcopy_file)
                      
