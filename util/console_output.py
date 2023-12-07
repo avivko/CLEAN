@@ -4,7 +4,7 @@
 # Written by Logan Grosenick <logan@responsive.ai>, 2019.
 
 import time, sys
-import fcntl
+# import fcntl # not available on windows
 import struct
 
 #------------------------------------------------------------------------------- 
